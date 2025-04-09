@@ -37,18 +37,56 @@ public class UIManager : MonoBehaviour
         button.transform.localScale = originalScale;
     }
 
+    public GameObject loadingScreenPrefab;
+    public GameObject messageBoxPrefab;
+    private GameObject activeLoadingScreen;
+    private GameObject activeMessageBox;
+
     public void ShowLoadingScreen()
     {
-        // Implement loading screen logic
+        if (loadingScreenPrefab != null)
+        {
+            activeLoadingScreen = Instantiate(loadingScreenPrefab, transform);
+            activeLoadingScreen.SetActive(true);
+        }
     }
 
     public void HideLoadingScreen()
     {
-        // Implement hide loading screen logic
+        if (activeLoadingScreen != null)
+        {
+            Destroy(activeLoadingScreen);
+            activeLoadingScreen = null;
+        }
     }
 
     public void ShowMessage(string message)
     {
-        // Implement message display logic
+        if (messageBoxPrefab != null)
+        {
+            if (activeMessageBox != null)
+            {
+                Destroy(activeMessageBox);
+            }
+            
+            activeMessageBox = Instantiate(messageBoxPrefab, transform);
+            Text messageText = activeMessageBox.GetComponentInChildren<Text>();
+            if (messageText != null)
+            {
+                messageText.text = message;
+            }
+            
+            StartCoroutine(AutoHideMessage());
+        }
+    }
+
+    private IEnumerator AutoHideMessage()
+    {
+        yield return new WaitForSeconds(3f);
+        if (activeMessageBox != null)
+        {
+            Destroy(activeMessageBox);
+            activeMessageBox = null;
+        }
     }
 }
