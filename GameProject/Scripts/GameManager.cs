@@ -3,75 +3,33 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
-    
-    public GameState gameState = new GameState();
-
-    void Awake()
+    public void StartGame()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    public void LoadGame()
-    {
-        if (PlayerPrefs.HasKey("GameSave"))
-        {
-            string saveData = PlayerPrefs.GetString("GameSave");
-            JsonUtility.FromJsonOverwrite(saveData, gameState);
-            SceneManager.LoadScene("GameScene");
-        }
-    }
-
-    public void SaveGame()
-    {
-        string saveData = JsonUtility.ToJson(gameState);
-        PlayerPrefs.SetString("GameSave", saveData);
-        PlayerPrefs.Save();
-    }
-
-    public void StartNewGame()
-    {
-        gameState = new GameState();
+        // Load the game scene
         SceneManager.LoadScene("GameScene");
     }
 
-    public void OpenCustomization()
+    public void OpenMap()
     {
-        SceneManager.LoadScene("CustomizationScene");
-    }
-
-    public void OpenCollection()
-    {
-        SceneManager.LoadScene("CollectionScene");
+        // Load the game map scene
+        SceneManager.LoadScene("GameMap");
     }
 
     public void OpenSettings()
     {
+        // Load the settings scene
         SceneManager.LoadScene("SettingsScene");
     }
-}
 
-[System.Serializable]
-public class GameState
-{
-    public int level = 1;
-    public int score = 0;
-    public bool[] unlockedDogs = new bool[10];
-    public DogCustomization currentDog = new DogCustomization();
-}
+    public void OpenCredits()
+    {
+        // Load the credits scene
+        SceneManager.LoadScene("CreditsScene");
+    }
 
-[System.Serializable]
-public class DogCustomization
-{
-    public int colorIndex = 0;
-    public int accessoryIndex = 0;
-    public string dogName = "Dog";
+    public void QuitGame()
+    {
+        // Quit the application
+        Application.Quit();
+    }
 }
