@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ShowMessage(string message)
+    public void ShowMessage(string messageKey)
     {
         if (messageBoxPrefab != null)
         {
@@ -71,9 +71,15 @@ public class UIManager : MonoBehaviour
             
             activeMessageBox = Instantiate(messageBoxPrefab, transform);
             Text messageText = activeMessageBox.GetComponentInChildren<Text>();
-            if (messageText != null)
+            LocalizedText localizedText = activeMessageBox.GetComponentInChildren<LocalizedText>();
+            
+            if (localizedText != null)
             {
-                messageText.text = message;
+                localizedText.SetKey(messageKey);
+            }
+            else if (messageText != null)
+            {
+                messageText.text = LocalizationManager.Instance.GetLocalizedText(messageKey);
             }
             
             StartCoroutine(AutoHideMessage());
