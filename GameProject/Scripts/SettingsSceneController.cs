@@ -12,6 +12,10 @@ public class SettingsSceneController : MonoBehaviour
     public GameObject confirmationDialog;
     public Button confirmResetButton;
     public Button cancelResetButton;
+    
+    // Language selection UI
+    public Dropdown languageDropdown;
+    public LocalizedText[] localizedTexts;
 
     private const string BGM_VOLUME_KEY = "BGMVolume";
     private const string SFX_VOLUME_KEY = "SFXVolume";
@@ -19,8 +23,40 @@ public class SettingsSceneController : MonoBehaviour
 
     private void Start()
     {
+        SetupLanguageDropdown();
         LoadSettings();
         SetupUI();
+    }
+
+    private void SetupLanguageDropdown()
+    {
+        if (languageDropdown != null)
+        {
+            languageDropdown.ClearOptions();
+            
+            // Add language options
+            var options = new List<string>
+            {
+                "English",
+                "Tiếng Việt",
+                "中文",
+                "한국어",
+                "日本語"
+            };
+            
+            languageDropdown.AddOptions(options);
+            
+            // Set current language
+            languageDropdown.value = (int)LocalizationManager.Instance.currentLanguage;
+            
+            // Add listener for language change
+            languageDropdown.onValueChanged.AddListener(OnLanguageChanged);
+        }
+    }
+
+    private void OnLanguageChanged(int index)
+    {
+        LocalizationManager.Instance.SetLanguage((LocalizationManager.Language)index);
     }
 
     private void LoadSettings()
