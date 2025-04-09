@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Scene>
+  <GameObjects>
+    <GameObject name="Canvas">
+      <Component type="Canvas" />
+      <Component type="CanvasScaler" />
+      <Component type="GraphicRaycaster" />
+    </GameObject>
+  </GameObjects>
+</Scene>
