@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <GameObject name="StartButton">
+    <Component type="Button">
+      <Text>Start Game</Text>
+    </Component>
+  </GameObject>
+  <GameObject name="ContinueButton">
+    <Component type="Button">
+      <Text>Continue</Text>
+    </Component>
+  </GameObject>
+  <GameObject name="CustomizeButton">
+    <Component type="Button">
+      <Text>Customize Character</Text>
+    </Component>
+  </GameObject>
+  <GameObject name="CollectionButton">
+    <Component type="Button">
+      <Text>Dog Collection</Text>
+    </Component>
+  </GameObject>
+  <GameObject name="SettingsButton">
+    <Component type="Button">
+      <Text>Settings</Text>
+    </Component>
+  </GameObject>
+</Prefab>
+</create_file>
