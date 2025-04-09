@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Scene>
+  <GameObjects>
+    <GameObject name="GameMap" tag="Untagged">
+      <Components>
+        <MapRenderer>
+          <MapSize>
+            <Width>1000</Width>
+            <Height>1000</Height>
+          </MapSize>
+          <MapElements>
+            <Element type="Track" position="0,0,0" />
+            <Element type="Obstacle" position="100,0,100" />
+            <Element type="Checkpoint" position="200,0,200" />
+          </MapElements>
+        </MapRenderer>
+      </Components>
+    </GameObject>
+  </GameObjects>
+</Scene>
