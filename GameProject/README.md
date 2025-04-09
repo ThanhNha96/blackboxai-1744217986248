@@ -1,128 +1,145 @@
-# Dog Adventure Game Demo
+# Giả Lập Trộm Chó (Dog Theft Simulator)
 
-A simple platformer game where you control a customizable dog character, collect items, and complete levels.
+## Yêu Cầu Hệ Thống
 
-## Setup Instructions
+- Unity 2022.3 LTS hoặc mới hơn
+- Visual Studio 2019/2022 hoặc VS Code với Unity extension
+- Git (để clone repository)
 
-1. Open Unity Hub
-2. Add the GameProject folder as a new project
-3. Open the project in Unity Editor
-4. In the Project window, navigate to Scenes/MainMenu
-5. Double click MainMenu scene to open it
+## Các Bước Cài Đặt
 
-## Required Unity Setup
+1. Clone Repository:
+```bash
+git clone https://github.com/your-username/dog-theft-simulator.git
+cd dog-theft-simulator
+```
 
-1. Create the following folders in the Project window if they don't exist:
-   - Prefabs
-   - Scenes
-   - Scripts
-   - Materials
-   - Sprites
-   - Resources (for localization)
+2. Cài Đặt Unity Hub:
+- Tải Unity Hub từ: https://unity.com/download
+- Cài đặt Unity Hub
+- Cài đặt Unity 2022.3 LTS thông qua Unity Hub
 
-2. Setup Localization:
-   - Add LocalizationManager to a persistent GameObject in the MainMenu scene
-   - Add LocalizedText component to all UI Text elements that need translation
-   - Set the appropriate localization key for each LocalizedText component
+3. Cài Đặt Các Package Cần Thiết:
+- TextMeshPro
+- Cinemachine
+- Input System
+- Universal Render Pipeline
+- Post Processing
 
-2. Required Prefabs (Create basic objects and save as prefabs):
-   - Player prefab with these components:
-     * Sprite Renderer
-     * Rigidbody2D (2D physics)
-     * Box Collider 2D
-     * DogController script
-   - Platform prefab:
-     * Sprite Renderer
-     * Box Collider 2D
-   - Collectible prefab:
-     * Sprite Renderer
-     * Circle Collider 2D (Is Trigger enabled)
-     * Collectible script
-   - Level End prefab:
-     * Sprite Renderer
-     * Box Collider 2D (Is Trigger enabled)
+4. Mở Project:
+- Mở Unity Hub
+- Chọn "Add" và chọn thư mục project
+- Chờ Unity import toàn bộ assets
 
-3. Required Scenes:
+## Build Game
+
+### Build cho Windows:
+1. Mở Unity Editor
+2. File > Build Settings
+3. Chọn Platform: PC, Mac & Linux Standalone
+4. Target Platform: Windows
+5. Architecture: x86_64
+6. Chọn "Build" hoặc "Build And Run"
+
+### Build cho Mac:
+1. Mở Unity Editor
+2. File > Build Settings
+3. Chọn Platform: PC, Mac & Linux Standalone
+4. Target Platform: macOS
+5. Architecture: Universal
+6. Chọn "Build" hoặc "Build And Run"
+
+### Build cho Android:
+1. Cài đặt Android Studio và Android SDK
+2. Unity Editor > Edit > Preferences > External Tools
+3. Cấu hình SDK, JDK
+4. File > Build Settings
+5. Switch Platform sang Android
+6. Player Settings:
+   - Package name: com.yourstudio.dogtheft
+   - Minimum API Level: Android 7.0
+   - Target API Level: Latest
+7. Chọn "Build" hoặc "Build And Run"
+
+## Cấu Trúc Project
+
+```
+GameProject/
+├── Scripts/                 # Mã nguồn C#
+│   ├── Combat/             # Hệ thống chiến đấu
+│   ├── Character/          # Hệ thống nhân vật
+│   ├── Police/             # AI cảnh sát
+│   ├── Quest/              # Nhiệm vụ
+│   ├── Shop/               # Hệ thống cửa hàng
+│   ├── UI/                 # Giao diện người dùng
+│   └── Environment/        # Môi trường game
+├── Prefabs/                # Các prefab
+├── Scenes/                 # Các scene
+└── ProjectSettings/        # Cấu hình project
+```
+
+## Các Scene Chính
+
+1. MainMenu.unity: Màn hình chính
+2. GameScene.unity: Scene chơi game chính
+
+## Cấu Hình Build
+
+1. Thêm scenes vào Build Settings theo thứ tự:
    - MainMenu
    - GameScene
-   - CustomizationScene
-   - CollectionScene
-   - SettingsScene
 
-## Building the Game
+2. Player Settings cần thiết:
+   - Company Name: Your Studio
+   - Product Name: Giả Lập Trộm Chó
+   - Version: 1.0
+   - Default Icon: Thêm icon game
+   - Splash Image: Thêm logo studio
 
-1. Set up all scenes in Build Settings:
-   - Open File > Build Settings
-   - Add all scenes from the Scenes folder
-   - Ensure MainMenu scene is first in the list
+3. Quality Settings:
+   - Đặt Preset mặc định
+   - Cấu hình đồ họa cho từng platform
 
-2. Configure Player Settings:
-   - Company Name: YourCompanyName
-   - Product Name: Dog Adventure
-   - Default Icon: Add your game icon
+## Tối Ưu Hóa
 
-3. Build the Game:
-   - Choose your target platform (PC/Mac/Linux)
-   - Click "Build"
-   - Select output folder
-   - Wait for build completion
+1. Nén Texture:
+   - Windows/Mac: Normal quality
+   - Android: Compressed
 
-## Controls
+2. Audio Settings:
+   - Format: Vorbis
+   - Quality: 70%
+   - Load Type: Streaming
 
-- Arrow Keys / A,D - Move left/right
-- Space - Jump
-- Escape - Pause game
-- Mouse - Menu navigation
+3. Lighting:
+   - Mixed Lighting
+   - Bake lighting maps
 
-## Language Settings
+## Kiểm Tra Trước Khi Build
 
-The game supports multiple languages that can be changed in the Settings menu:
-1. Open Settings
-2. Find the Language dropdown
-3. Select your preferred language
-4. All text will update automatically
+1. Xóa các debug logs
+2. Kiểm tra các scene trong build
+3. Kiểm tra các reference
+4. Test performance
+5. Chạy thử các tính năng chính
 
-For Developers:
-- Use LocalizedText component on UI Text elements
-- Add new translations in LocalizationManager.cs
-- Use localization keys for all in-game text
-- Test all supported languages
+## Phát Hành
 
-## Features
+1. Tạo installer cho Windows/Mac
+2. Đóng gói APK cho Android
+3. Tạo trang web download
+4. Viết hướng dẫn cài đặt
 
-- Customizable dog character
-- Collectible items
-- Level progression
-- Save/Load system
-- Settings configuration
-- Dog collection system
-- Multilingual support:
-  * English
-  * Vietnamese (Tiếng Việt)
-  * Chinese (中文)
-  * Korean (한국어)
-  * Japanese (日本語)
+## Hỗ Trợ
 
-## Demo Level
+Nếu gặp vấn đề khi build:
+1. Kiểm tra Unity Console
+2. Xem logs trong Editor.log
+3. Kiểm tra Build Report
+4. Liên hệ support qua Discord/Email
 
-The demo includes one generated level with:
-- Platforms to jump between
-- Collectible items to gather
-- End goal to complete the level
-- Score tracking
-- Level completion system
+## Credits
 
-## Known Issues
-
-- Some visual effects might be missing
-- Sound effects not implemented
-- Limited animation states
-
-## Next Steps for Full Game
-
-1. Add more levels
-2. Implement sound effects and background music
-3. Add more dog customization options
-4. Create level selection menu
-5. Add more gameplay mechanics
-6. Implement achievements system
+Game được phát triển bởi [Your Studio]
+Version: 1.0
+Copyright © 2024
