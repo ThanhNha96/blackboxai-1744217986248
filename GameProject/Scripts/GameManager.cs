@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey("GameSave"))
         {
             string saveData = PlayerPrefs.GetString("GameSave");
-            // Implement save data deserialization
+            JsonUtility.FromJsonOverwrite(saveData, gameState);
             SceneManager.LoadScene("GameScene");
         }
     }
